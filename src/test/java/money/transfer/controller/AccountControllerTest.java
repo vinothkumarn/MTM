@@ -1,11 +1,10 @@
 package money.transfer.controller;
 
+import org.mockito.InjectMocks;
+import org.junit.jupiter.api.Test;
 import money.transfer.controller.dto.AccountDTO;
 import money.transfer.service.AccountService;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 
-import java.util.IllegalFormatException;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AccountControllerTest {
@@ -19,6 +18,6 @@ class AccountControllerTest {
             .accountOwnerName("123456")
             .build();
 
-    assertThrows(IllegalFormatException.class, () -> accountService.createAccount(accountDto));
+    assertThrows(IllegalStateException.class, () -> accountService.createAccount(accountDto));
   }
 }

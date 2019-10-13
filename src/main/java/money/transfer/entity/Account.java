@@ -3,6 +3,7 @@ package money.transfer.entity;
 import lombok.Data;
 import java.util.UUID;
 import java.math.BigDecimal;
+import money.transfer.utils.ValidateName;
 
 @Data
 public class Account {
@@ -13,4 +14,11 @@ public class Account {
 
     private BigDecimal accountBalance;
 
+    public void setAccountOwnerName(String accountOwnerName) {
+        if(ValidateName.validate(accountOwnerName)) {
+            this.accountOwnerName = accountOwnerName;
+        } else {
+            throw new IllegalStateException("Only alphabets and spaces are allowed");
+        }
+    }
 }
