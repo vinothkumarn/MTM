@@ -11,5 +11,5 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class AccountDTO {
-    private String accountOwnerName;
+  private String accountOwnerName;
 }

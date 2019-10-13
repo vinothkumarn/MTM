@@ -8,17 +8,17 @@ import money.transfer.utils.ValidateName;
 @Data
 public class Account {
 
-    private UUID id;
+  private UUID id;
 
-    private String accountOwnerName;
+  private String accountOwnerName;
 
-    private BigDecimal accountBalance;
+  private BigDecimal accountBalance;
 
-    public void setAccountOwnerName(String accountOwnerName) {
-        if(ValidateName.validate(accountOwnerName)) {
-            this.accountOwnerName = accountOwnerName;
-        } else {
-            throw new IllegalStateException("Only alphabets and spaces are allowed");
-        }
+  public void setAccountOwnerName(String accountOwnerName) {
+    if (ValidateName.validate(accountOwnerName)) {
+      this.accountOwnerName = accountOwnerName;
+    } else {
+      throw new IllegalStateException("Only alphabets and spaces are allowed");
     }
+  }
 }
