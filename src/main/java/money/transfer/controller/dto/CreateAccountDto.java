@@ -10,6 +10,6 @@ import lombok.AllArgsConstructor;
 @Builder()
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class AccountDTO {
+public class CreateAccountDto {
   private String accountOwnerName;
 }

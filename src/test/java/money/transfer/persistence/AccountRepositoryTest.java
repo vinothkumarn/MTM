@@ -6,13 +6,14 @@ import money.transfer.entity.Account;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountRepositoryTest extends BaseInjector {
 
-    private AccountRepository accountRepository = injector.getInstance(AccountRepository.class);;
+    private AccountRepository accountRepository = injector.getInstance(AccountRepository.class);
 
     @Test
     public void testSaveAccount() {
@@ -46,8 +47,13 @@ public class AccountRepositoryTest extends BaseInjector {
                 .accountBalance(new BigDecimal(0))
                 .build();
         accountRepository.save(account);
-        account.setAccountBalance(new BigDecimal(99));
+        BigDecimal newAccountBalance = new BigDecimal(99.55);
+        account.setAccountBalance(newAccountBalance);
         accountRepository.update(account);
-        assertEquals(new BigDecimal(99), accountRepository.get(account.getId()).getAccountBalance());
+        assertEquals(
+                newAccountBalance.setScale(2, RoundingMode.HALF_EVEN),
+                accountRepository.get(account.getId())
+                        .getAccountBalance()
+                        .setScale(2, RoundingMode.HALF_EVEN));
     }
 }

@@ -1,11 +1,12 @@
 package money.transfer.service;
 
 import com.google.inject.Inject;
-import money.transfer.controller.dto.AccountDTO;
+import money.transfer.controller.dto.CreateAccountDto;
+import money.transfer.controller.mapper.AccountMapper;
 import money.transfer.entity.Account;
 import money.transfer.persistence.AccountRepository;
+import money.transfer.utils.ValidateName;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 public class AccountService {
@@ -17,12 +18,17 @@ public class AccountService {
     this.accountRepository = accountRepository;
   }
 
-  public Account createAccount(AccountDTO accountDTO) {
-     accountRepository.save(null);
-     return null;
+  public UUID createAccount(CreateAccountDto createAccountDtO) {
+    if (createAccountDtO != null && ValidateName.validate(createAccountDtO.getAccountOwnerName())) {
+      UUID createdAccountNumber =
+          accountRepository.save(AccountMapper.createAccountDtoToAccount(createAccountDtO));
+      return createdAccountNumber;
+    } else {
+      throw new IllegalArgumentException("Invalid data");
+    }
   }
 
   public Account getAccount(UUID id) {
-    return null;
+    return accountRepository.get(id);
   }
 }
