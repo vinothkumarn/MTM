@@ -1,6 +1,7 @@
 package money.transfer.service;
 
 import money.transfer.entity.Account;
+import money.transfer.persistence.AccountRepository;
 import org.mockito.InjectMocks;
 import org.junit.jupiter.api.Test;
 import money.transfer.controller.dto.AccountDTO;
@@ -10,11 +11,13 @@ import org.mockito.MockitoAnnotations;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 class AccountServiceTest {
 
     @Mock
-    private AccountDao accountDao;
+    private AccountRepository accountRepository;
 
     @InjectMocks
     private AccountService accountService;
@@ -26,7 +29,7 @@ class AccountServiceTest {
     @Test
     void shouldCreateNewAccount() {
 
-        when(accountDao.save(any(Account.class))).thenReturn(Account.builder()
+        when(accountRepository.save(any(Account.class))).thenReturn(Account.builder()
                 .accountOwnerName("vinoth kumar")
                 .build());
 

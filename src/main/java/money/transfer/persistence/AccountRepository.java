@@ -1,4 +1,4 @@
-package money.transfer.persistence.repo;
+package money.transfer.persistence;
 
 import money.transfer.entity.Account;
 
