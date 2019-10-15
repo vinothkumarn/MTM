@@ -18,7 +18,8 @@ public class AccountService {
   }
 
   public Account createAccount(AccountDTO accountDTO) {
-    return accountRepository.save(null);
+     accountRepository.save(null);
+     return null;
   }
 
   public Account getAccount(UUID id) {

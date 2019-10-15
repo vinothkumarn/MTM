@@ -1,6 +1,7 @@
 package money.transfer.persistence;
 
 import com.google.inject.Inject;
+import money.transfer.BaseInjector;
 import money.transfer.entity.Account;
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +10,9 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AccountRepositoryTest {
+public class AccountRepositoryTest extends BaseInjector {
 
-    @Inject
-    private AccountRepository accountRepository;
+    private AccountRepository accountRepository = injector.getInstance(AccountRepository.class);;
 
     @Test
     public void testSaveAccount() {

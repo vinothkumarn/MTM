@@ -29,9 +29,7 @@ class AccountServiceTest {
     @Test
     void shouldCreateNewAccount() {
 
-        when(accountRepository.save(any(Account.class))).thenReturn(Account.builder()
-                .accountOwnerName("vinoth kumar")
-                .build());
+        when(accountRepository.save(any(Account.class))).thenReturn(UUID.randomUUID());
 
         final AccountDTO accountDto = AccountDTO.builder()
                 .accountOwnerName("vinoth kumar")

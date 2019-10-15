@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public interface AccountRepository {
 
-    public Account save(Account account);
-    public Account update(Account account);
+    public UUID save(Account account);
+    public void update(Account account);
     public Account get(UUID id);
 }
