@@ -23,20 +23,18 @@ public class ConcurrentTransferLoadTest extends BaseInjector {
   private TransferService transferService = injector.getInstance(TransferService.class);
   private ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
   private Collection<Future> futures = new LinkedList<Future>();
-  private List<UUID> accounts = new ArrayList<UUID>();
-
-  @BeforeEach
-  public void setUp() {
-    final CreateAccountDto user1Dto =
-        CreateAccountDto.builder().accountOwnerName("User one").build();
-    final CreateAccountDto user2Dto =
-        CreateAccountDto.builder().accountOwnerName("User two").build();
-    accounts.add(accountService.createAccount(user1Dto));
-    accounts.add(accountService.createAccount(user2Dto));
-  }
 
   @Test
   public void testConcurrentCredits() throws ExecutionException, InterruptedException {
+
+    List<UUID> accounts = new ArrayList<UUID>();
+    CreateAccountDto user1Dto =
+            CreateAccountDto.builder().accountOwnerName("User one").build();
+    CreateAccountDto user2Dto =
+            CreateAccountDto.builder().accountOwnerName("User two").build();
+    accounts.add(accountService.createAccount(user1Dto));
+    accounts.add(accountService.createAccount(user2Dto));
+
     Runnable runnable =
         () -> {
           for (UUID accountId : accounts) {
@@ -69,6 +67,14 @@ public class ConcurrentTransferLoadTest extends BaseInjector {
 
   @Test
   public void testConcurrentTransfers() throws ExecutionException, InterruptedException {
+
+    List<UUID> accounts = new ArrayList<UUID>();
+    CreateAccountDto user1Dto =
+            CreateAccountDto.builder().accountOwnerName("User one").build();
+    CreateAccountDto user2Dto =
+            CreateAccountDto.builder().accountOwnerName("User two").build();
+    accounts.add(accountService.createAccount(user1Dto));
+    accounts.add(accountService.createAccount(user2Dto));
 
     // Credit accounts before making transfer
     for (UUID accountId : accounts) {

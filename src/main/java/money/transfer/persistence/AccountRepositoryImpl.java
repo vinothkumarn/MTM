@@ -57,6 +57,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         BigDecimal newBalance = account.getAccountBalance().add(amount);
 
         if (newBalance.signum() < 0) {
+            transaction.rollback();
             throw new IllegalStateException("Not enough money to make this transfer");
         }
         account.setAccountBalance(newBalance);
