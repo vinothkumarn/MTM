@@ -8,11 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class HibernateSessionFactoryTest {
 
-    @Inject
-    private SessionFactory sessionFactory;
-
     @Test
     public void testSessionFactoryNotNull() {
-        assertNotNull(sessionFactory);
+        assertNotNull(HibernateConfig.getSessionFactory());
     }
 }
