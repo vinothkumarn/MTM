@@ -68,7 +68,7 @@ The REST API to the service is described below.
 
 ### Request
 
-`PUT /api/accounts/credit`
+`POST /api/accounts/credit`
 
     curl -d '{"id":"7a0feb7e-463a-40fc-9b9c-3820e65fca51","creditAmount":"500"}' -H "Content-Type: application/json" -X POST http://localhost:4567/api/accounts/credit
 
@@ -80,7 +80,7 @@ The REST API to the service is described below.
 
 ### Request
 
-`GET /api/accounts/transfer`
+`POST /api/accounts/transfer`
 
     curl -d '{"senderId":"7a0feb7e-463a-40fc-9b9c-3820e65fca51", "receiverId":"ad9393c2-cce0-4f3c-8011-ae4e256b49bf", "amount":"25"}' -H "Content-Type: application/json" -X POST http://localhost:4567/api/accounts/transfer
 
