@@ -7,13 +7,28 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AccountRepositoryTest extends BaseInjector {
 
     private AccountRepository accountRepository = injector.getInstance(AccountRepository.class);
+
+    @Test
+    public void testGetAllAccount() {
+        UUID accountNumber = UUID.randomUUID();
+        Account account = Account.builder()
+                .id(accountNumber)
+                .accountOwnerName("Vinothkumar")
+                .accountBalance(new BigDecimal(0))
+                .build();
+        accountRepository.save(account);
+        List<Account> result = accountRepository.getAll();
+        assertTrue(result.get(0) instanceof Account);
+    }
 
     @Test
     public void testSaveAccount() {
